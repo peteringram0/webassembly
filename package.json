@@ -1,0 +1,15 @@
+{
+  "name": "webassembly",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:peteringram0/webassembly.git",
+  "author": "Peter Ingram <p.ingram@managedracks.co.uk>",
+  "license": "MIT",
+  "scripts": {
+    "serve": "go run ./server/server.go",
+    "build:go": "cd go && GOOS=js GOARCH=wasm go build -o ./main.wasm",
+    "build:c": "wa compile c/main.c -o ./../main.wasm",
+    "build:d": "emcc c/main.c -s WASM=1 -o ./dist/main.html",
+    "build:e": "emcc ./c/main.c -s SIDE_MODULE=1 -o main.wasm"
+  }
+}
