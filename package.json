@@ -8,12 +8,14 @@
   "scripts": {
     "serve": "go run ./server/server.go",
     "build:go": "cd go && GOOS=js GOARCH=wasm go build -o ./main.wasm",
-    "build:c": "gulp --gulpfile ./c/build.ts"
+    "build:c": "gulp --gulpfile ./c/build.ts",
+    "build:ts": "gulp --gulpfile ./ts/gulpfile.js"
   },
   "dependencies": {
     "@wasm/studio-utils": "*",
+    "assemblyscript": "AssemblyScript/assemblyscript",
+    "gulp": "~3.9.1",
     "ts-node": "~5.0.0",
-    "typescript": "~2.7.2",
-    "gulp": "~3.9.1"
+    "typescript": "~2.7.2"
   }
 }
