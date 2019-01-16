@@ -1,5 +1,6 @@
-#include <stdio.h>
+#define WASM_EXPORT __attribute__((visibility("default")))
 
-int main(int argc, char ** argv) {
-    printf("Hello World\n");
+WASM_EXPORT
+int main() {
+  return 42;
 }

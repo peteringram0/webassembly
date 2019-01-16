@@ -8,8 +8,12 @@
   "scripts": {
     "serve": "go run ./server/server.go",
     "build:go": "cd go && GOOS=js GOARCH=wasm go build -o ./main.wasm",
-    "build:test1": "wa compile c/main.c -o ./../main.wasm",
-    "build:test2": "emcc ./c/main.c -s WASM=1 -s SIDE_MODULE=1 -o ./c/main.wasm",
-    "build:c": "emcc ./c/main.c -s SIDE_MODULE=1 -o ./c/main.wasm"
+    "build:c": "gulp --gulpfile ./c/build.ts"
+  },
+  "dependencies": {
+    "@wasm/studio-utils": "*",
+    "ts-node": "~5.0.0",
+    "typescript": "~2.7.2",
+    "gulp": "~3.9.1"
   }
 }
