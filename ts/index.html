@@ -7,8 +7,13 @@
 </head>
 
 <body style="background: #fff">
-    <span id="container"></span>
+
+    <button onclick="run()">Run WA</button>
+    <button onclick="runLocal()">Run JS</button>
+
     <script>
+
+        let exports = false;
 
         WebAssembly.instantiateStreaming(fetch("./main.wasm"), {
             // main: {
@@ -18,11 +23,31 @@
             // }
         })
             .then(result => {
-                const exports = result.instance.exports;
-                console.log(exports.add(19, 23));
+                exports = result.instance.exports;
             }).catch(console.error);
 
+        function run() {
+            log('WS', exports.fib);
+        }
+
+        function runLocal() {
+            log('JS', fib);
+        }
+
+        function log(type, func) {
+            var t0 = performance.now();
+            let answer = func(40);
+            var t1 = performance.now();
+            console.log(type, 'answer:', answer, 'took ' + (t1 - t0) + ' milliseconds.'); // average 884.5000000001164 milliseconds
+        }
+
+        function fib(num) {
+            if (num <= 1) return 1;
+            return fib(num - 1) + fib(num - 2);
+        }
+
     </script>
+
 </body>
 
 </html>
